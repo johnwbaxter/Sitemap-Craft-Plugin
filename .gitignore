@@ -1,3 +1,6 @@
 # Craft Storage (cache) [http://buildwithcraft.com/help/craft-storage-gitignore]
 /craft/storage/*
 !/craft/storage/logo/*
+
+# PhpStorm IDE project
+.idea
