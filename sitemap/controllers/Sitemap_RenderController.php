@@ -26,14 +26,32 @@ class Sitemap_RenderController extends BaseController
     {
         header('Content-type: text/xml');
 
+        if(craft()->cache->get('sitemap')){
+            return print(craft()->cache->get('sitemap'));
+        }
+
         $this->createUrlSet();
         $this->addSections();
 
-        print($this->dom->saveXML());
+        $data = $this->dom->saveXML();
+
+        print($data);
+
+        craft()->cache->add('sitemap',$data,60*60*24);
     }
 
     private function addElement(EntryModel $entry, $changeFrequency, $priority)
     {
+        //Check if manually hidden
+        if($entry->SiteMapPluginHideFromSiteMap) {
+            return;
+        }
+
+        //Check if entry has URL, some sections don't
+        if(!$entry->getUrl()) {
+            return;
+        }
+
         $url = $this->dom->createElement('url');
 
         $urlLoc = $this->dom->createElement('loc');
