@@ -1,4 +1,5 @@
-<p>Each of your sections are shown below.  Select the relevant options you want for each section, or alternatively flip the switch to remove the from the sitemap completely.</p>
+<p>Each of your sections are shown below.  Select the relevant options you want for each section, or alternatively flip the switch to remove the from the sitemap completely.
+If you want to exclude a specific entry from a section, the field 'Hide From SiteMap' has been created. Add it to the section you want to exclude articles from, then flip the switch on an article by article basis. </p>
 
 {% for section in sections %}
     {% set currentSettings = craft.sitemap.settingsForSection(section) %}

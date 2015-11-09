@@ -27,7 +27,32 @@ class SitemapPlugin extends BasePlugin
 
     function getVersion()
     {
-        return '1.0.0';
+        return '1.1.0';
+    }
+
+    function init()
+    {
+        $this->addEventListeners();
+    }
+
+    public function addEventListeners() {
+        craft()->on('entries.saveEntry', array(craft()->sitemap,'invalidateSitemapCache'));
+    }
+
+    public function onAfterInstall()
+    {
+
+        if(!craft()->fields->getFieldByHandle('SiteMapPluginHideFromSiteMap')) {
+
+            $thirdPartyField = new FieldModel();
+            $thirdPartyField->groupId = 1;
+            $thirdPartyField->name = Craft::t('Hide From SiteMap');
+            $thirdPartyField->handle = 'SiteMapPluginHideFromSiteMap';
+            $thirdPartyField->translatable = false;
+            $thirdPartyField->type = 'Lightswitch';
+            craft()->fields->saveField($thirdPartyField);
+        }
+
     }
 
     protected function defineSettings()
@@ -75,4 +100,5 @@ class SitemapPlugin extends BasePlugin
             'sitemap.xml' => array('action' => 'sitemap/render/renderSitemap')
         );
     }
+
 }

@@ -49,4 +49,15 @@ class SitemapService extends BaseApplicationComponent
 
         return $result;
     }
+
+    public function invalidateSitemapCache()
+    {
+        if(craft()->cache->get('sitemap')) {
+
+            craft()->cache->delete('sitemap');
+            SitemapPlugin::Log('cache deleted');
+
+        }
+    }
+
 }

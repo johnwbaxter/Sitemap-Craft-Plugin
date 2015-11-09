@@ -9,6 +9,7 @@ Installing the plugin is straight-forward and follows the same process as most o
  1. Download the latest version from the Github releases page.
  2. Upload the "sitemap" folder into your website's craft/plugins folder.
  3. Activate the plugin in the Craft Settings > Plugins page.
+ 4. Optionally add the newly created field 'Hide From SiteMap' to sections you want hide specific entries in.
 
 Sitemap doesn't create any additional tables in your database - the settings are stored in the main plugins table.
 
@@ -28,7 +29,7 @@ Set the values accordingly for each section, and hit the "Save" button at the bo
 ## Viewing the sitemap
 The XML sitemap is not for the eyes of your average visitor, however it is crucial to inform the search engines of all the possible links on your site.
 
-Your sitemap is generated on-demand (future versions of the Sitemap plugin will cache it) and you can view it at the below URL, or submit this URL to the search engines.
+Your sitemap is generated on-demand, cached for 24 hours (cleared if an entry is updated/created) you can view it at the below URL, or submit this URL to the search engines.
 
 http://<your site URL>/sitemap.xml
 
